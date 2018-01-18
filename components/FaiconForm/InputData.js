@@ -13,7 +13,6 @@ export default class InputData extends Component {
       this.props.nextInput.focus();
     }
   }
- 
   render() {
     return (
       <Item floatingLabel>
