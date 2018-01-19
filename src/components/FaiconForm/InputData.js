@@ -14,7 +14,6 @@ export default class InputData extends Component {
 
   onSubmitEditing = event => {
     const nextItem = this.props.form.getNextItem(this);
-    console.log(nextItem);
     if (nextItem) {
       nextItem.focus();
     }
