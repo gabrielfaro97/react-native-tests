@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { KeyboardAvoidingView } from "react-native";
 import { Container, Content, Text, View } from "native-base";
-import DateTimePicker from "react-native-modal-datetime-picker";
 import { InputData, DatePicker, DualRadioField, FullButton, Form } from "@faiconForm";
 
 export default class NewUserScreen extends Component {

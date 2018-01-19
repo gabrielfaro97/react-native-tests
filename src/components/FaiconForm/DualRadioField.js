@@ -38,7 +38,7 @@ export default class DualRadioField extends Component {
                 selected={this.state.value === this.props.firstOption.value}
               />
               <Text>
-                {this.props.firstOption.label}
+                {" "}{this.props.firstOption.label}
               </Text>
             </ListItem>
           </TouchableWithoutFeedback>
@@ -49,7 +49,7 @@ export default class DualRadioField extends Component {
                 selected={this.state.value === this.props.secondOption.value}
               />
               <Text>
-                {this.props.secondOption.label}
+              {" "}{this.props.secondOption.label}
               </Text>
             </ListItem>
           </TouchableWithoutFeedback>
