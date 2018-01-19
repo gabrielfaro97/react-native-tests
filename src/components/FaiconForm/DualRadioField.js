@@ -14,9 +14,14 @@ import {
 import { TouchableWithoutFeedback } from "react-native";
 
 export default class DualRadioField extends Component {
-  teste = () => {
-    alert("fi da puta");
-  };
+  state = {
+    value: null
+  }
+
+  _onPress = option => {
+    this.setState({ value: option.value });
+    this.props.form.updateDataSet(option.value, this.props.dataField);
+  }
 
   render() {
     return (
@@ -24,27 +29,27 @@ export default class DualRadioField extends Component {
         <Label>
           {this.props.label}
         </Label>
-        <Input editable={false}/>
+        <Input editable={false} />
         <List style={{ flexDirection: "row" }}>
           <TouchableWithoutFeedback onPress={this.props.firstOptionPress}>
             <ListItem style={{ backgroundColor: "#E9E9EF", borderColor: 'transparent' }}>
-              <Radio             
-                onPress={this.props.firstOptionPress}
-                selected={this.props.firstOptionIsSelected}                
+              <Radio
+                onPress={() => this._onPress(this.props.firstOption)}
+                selected={this.state.value === this.props.firstOption.value}
               />
               <Text>
-                {this.props.firstOption}
+                {this.props.firstOption.label}
               </Text>
             </ListItem>
           </TouchableWithoutFeedback>
           <TouchableWithoutFeedback onPress={this.props.secondOptionPress}>
             <ListItem style={{ backgroundColor: "#E9E9EF", borderColor: 'transparent' }}>
               <Radio
-                onPress={this.props.secondOptionPress}
-                selected={this.props.secondOptionIsSelected}
+                onPress={() => this._onPress(this.props.secondOption)}
+                selected={this.state.value === this.props.secondOption.value}
               />
               <Text>
-                {this.props.secondOption}
+                {this.props.secondOption.label}
               </Text>
             </ListItem>
           </TouchableWithoutFeedback>

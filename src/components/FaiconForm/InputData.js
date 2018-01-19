@@ -8,10 +8,20 @@ export default class InputData extends Component {
     this.input._root.focus();
   }
 
+  componentDidMount() {
+    this.props.form.attachInput(this);
+  }
+
   onSubmitEditing = event => {
-    if (this.props.nextInput && this.props.nextInput.focus) {
-      this.props.nextInput.focus();
+    const nextItem = this.props.form.getNextItem(this);
+    console.log(nextItem);
+    if (nextItem) {
+      nextItem.focus();
     }
+  }
+
+  onChangeText = value => {
+    this.props.form.updateDataSet(value, this.props.dataField);
   }
 
   render() {
@@ -29,6 +39,7 @@ export default class InputData extends Component {
           keyboardType={this.props.keyboardType}
           secureTextEntry={this.props.isPassword}
           onSubmitEditing={this.onSubmitEditing}
+          onChangeText={this.onChangeText}
         />
       </Item>
     );

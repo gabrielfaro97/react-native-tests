@@ -1,25 +1,44 @@
 import React, { Component } from "react";
 import { Form as NativeForm } from "native-base";
 
-export default class Form extends Component {
 
+export default class Form extends Component {
+  
+  inputs = {}
+
+  dataSet = {}
+  
   state = {
     children: []
-  } 
+  }
 
   componentDidMount() {
     this.setState({ children:
-    this.props.children.map((input, index) => {
-      if (index < (this.props.children.length - 1)) {
-        return React.cloneElement(
-          input,
-          Object.assign({key: index}, input.props, {nextInput: this.props.children[index + 1]})
+      React.Children.map(this.props.children, (child, index) => {
+        let clone = React.cloneElement(
+          child,
+          {key: index, index: index, form: this}
         )
-      } else {
-        return input;
-      }
+        return clone;
     })
   });
+  }
+
+  updateDataSet = (value, key) => {
+    this.dataSet[key] = value;
+  }
+
+  attachInput = (child) => {
+    this.inputs[child.props.index] = child;
+  }
+
+  getNextItem = (child) => {
+    const index = child.props.index;
+    if ((index + 1) < this.state.children.length) {
+      return this.inputs[index + 1];
+    } else {
+      return null;
+    }
   }
  
   render() {
