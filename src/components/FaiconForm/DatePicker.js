@@ -13,7 +13,7 @@ export default class DatePicker extends Component {
   _hideDateTimePicker = () => this.setState({ isVisible: false });
 
   _handleDatePicked = date => {    
-    var formattedDate = date.toLocaleDateString("en-GB");
+    var formattedDate = date.toLocaleDateString("en-GB"); //comentario generico
     this.setState({
       value: formattedDate
     });
