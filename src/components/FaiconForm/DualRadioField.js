@@ -8,7 +8,7 @@ import {
   Icon,
   List,
   ListItem,
-  Radio,
+  CheckBox,
   Text
 } from "native-base";
 import { TouchableWithoutFeedback } from "react-native";
@@ -19,8 +19,9 @@ export default class DualRadioField extends Component {
   }
 
   _onPress = option => {
+    
     this.setState({ value: option.value });
-    this.props.form.updateDataSet(option.value, this.props.dataField);
+    this.props.form.setDataItem(option.value, this.props.dataField);
   }
 
   render() {
@@ -31,28 +32,28 @@ export default class DualRadioField extends Component {
         </Label>
         <Input editable={false} />
         <List style={{ flexDirection: "row" }}>
-          <TouchableWithoutFeedback onPress={this.props.firstOptionPress}>
+          
             <ListItem style={{ backgroundColor: "#E9E9EF", borderColor: 'transparent' }}>
-              <Radio
+              <CheckBox
                 onPress={() => this._onPress(this.props.firstOption)}
-                selected={this.state.value === this.props.firstOption.value}
+                checked={this.state.value === this.props.firstOption.value}
               />
               <Text>
                 {" "}{this.props.firstOption.label}
               </Text>
             </ListItem>
-          </TouchableWithoutFeedback>
-          <TouchableWithoutFeedback onPress={this.props.secondOptionPress}>
+          
+          
             <ListItem style={{ backgroundColor: "#E9E9EF", borderColor: 'transparent' }}>
-              <Radio
+              <CheckBox
                 onPress={() => this._onPress(this.props.secondOption)}
-                selected={this.state.value === this.props.secondOption.value}
+                checked={this.state.value === this.props.secondOption.value}
               />
               <Text>
               {" "}{this.props.secondOption.label}
               </Text>
             </ListItem>
-          </TouchableWithoutFeedback>
+          
         </List>
       </Item>
     );

@@ -8,29 +8,20 @@ export default class NewUserScreen extends Component {
     title: "Create Account"
   });
 
+  state = {
+    formData: {name: 'mão', mail: '123'}
+  }
+
+  componentDidMount() {
+    console.log('qualqueer coisa')
+  }
+
   _handlePress = () => {
     this.props.navigation.navigate("Login");
   };
 
   createAccount = () => {
-    console.log(this.form.dataSet);
-
-    alert(
-      "Your name is: " +
-      this.form.dataSet.name +
-      "\n" +
-      "Your mail is: " +
-      this.form.dataSet.mail +
-      "\n" +
-      "Your password is: " +
-      this.form.dataSet.password +
-      "\n" +
-      "Your gender is: " +
-      this.form.dataSet.gender +
-      "\n" +
-      "Your birth date is: " +
-      this.form.dataSet.birthDate
-    );
+    console.log(this.form.dataProvider);
   };
 
   render() {
@@ -38,7 +29,7 @@ export default class NewUserScreen extends Component {
       <Container>
         <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
           <Content style={{ flexDirection: "column", paddingHorizontal: 20 }}>
-            <Form ref={me => this.form = me}>
+            <Form ref={me => this.form = me} dataProvider={this.state.formData}>
               <InputData label="Nome" dataField="name" />
 
               <InputData
@@ -46,6 +37,7 @@ export default class NewUserScreen extends Component {
                 dataField="mail"
                 keyboardType="email-address"
                 autoCapitalize="none"
+                // itemRenderer={value => 'R$' + value}
               />
 
               <InputData
@@ -80,6 +72,12 @@ export default class NewUserScreen extends Component {
                 isPrimary={false}
                 color={"#2980b9"}
                 onPress={this._handlePress}
+              />
+              <FullButton
+                label="Teste"
+                isPrimary={false}
+                color={"#2980b9"}
+                onPress={() => this.setState({formData: {name: 'valente', mail: 'asdadf'}})}
               />
             </View>
           </Content>

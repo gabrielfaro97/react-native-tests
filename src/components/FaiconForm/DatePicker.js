@@ -1,30 +1,34 @@
-import React, { Component } from "react";
-import { Item, Input, Label, Content, Button, Icon } from "native-base";
-import DateTimePicker from "react-native-modal-datetime-picker";
+import React, { Component } from "react"
+import { Item, Input, Label, Content, Button, Icon } from "native-base"
+import DateTimePicker from "react-native-modal-datetime-picker"
 
 export default class DatePicker extends Component {
   state = {
-    isVisible: false,
-    value: null
+    isVisible: false
   };
 
-  _showDateTimePicker = () => this.setState({ isVisible: true });
+  _showDateTimePicker = () => this.setState({ isVisible: true })
 
-  _hideDateTimePicker = () => this.setState({ isVisible: false });
+  _hideDateTimePicker = () => this.setState({ isVisible: false })
 
   _handleDatePicked = date => {    
-    var formattedDate = date.toLocaleDateString("en-GB"); //comentario generico
-    this.setState({
-      value: formattedDate
-    });
-    this.props.form.updateDataSet(formattedDate, this.props.dataField);
+    this.props.form.setDataItem(date, this.props.dataField)
     this._hideDateTimePicker();
   };
+
+  _renderText = () => {
+    let value = this.props.form.getDataItem(this.props.dataField)
+    if (this.props.itemRenderer) {
+      return value ? this.props.itemRenderer(value) : this.props.label
+    } else {
+      return value ? value.toLocaleDateString("pt-BR") : this.props.label
+    }
+  }
 
   render() {
     return (
       <Item style={{ marginTop: 20 }}>
-        <Label>{this.state.value ? this.state.value : this.props.label}</Label>
+        <Label>{this._renderText()}</Label>
         <Input editable={false} />
         <Button transparent dark onPress={this._showDateTimePicker}>
           <Icon active name="calendar" />
@@ -40,6 +44,6 @@ export default class DatePicker extends Component {
           showDateTimePicker={this._showDateTimePicker}
         />
       </Item>
-    );
+    )
   }
 }
