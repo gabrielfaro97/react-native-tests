@@ -1,19 +1,40 @@
 import React, { Component } from "react";
 import { KeyboardAvoidingView } from "react-native";
 import { Container, Content, Text, View } from "native-base";
-import { InputData, DatePicker, DualRadioField, FullButton, Form } from "@faiconForm";
+import {
+  InputData,
+  DatePicker,
+  DualRadioField,
+  FullButton,
+  Form
+} from "@faiconForm";
+import { LinearGradient } from "expo";
 
 export default class NewUserScreen extends Component {
   static navigationOptions = ({ navigation }) => ({
-    title: "Create Account"
+    header: (
+      <LinearGradient
+        colors={["#259285", "#40E577"]}
+        start={{ x: 0.0, y: 1.0 }}
+        end={{ x: 1.0, y: 1.0 }}
+        style={{
+          height: 70,          
+          alignItems: "center",
+          justifyContent: "center",          
+        }}
+      >
+        <Text style={{color:'white'}}>CADASTRO</Text>
+        <Text style={{color:'white'}}>Perfil</Text>
+      </LinearGradient>
+    )
   });
 
   state = {
-    formData: {name: 'mão', mail: '123'}
-  }
+    formData: { name: "mão", mail: "123" }
+  };
 
   componentDidMount() {
-    console.log('qualqueer coisa')
+    console.log("qualqueer coisa");
   }
 
   _handlePress = () => {
@@ -29,7 +50,10 @@ export default class NewUserScreen extends Component {
       <Container>
         <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
           <Content style={{ flexDirection: "column", paddingHorizontal: 20 }}>
-            <Form ref={me => this.form = me} dataProvider={this.state.formData}>
+            <Form
+              ref={me => (this.form = me)}
+              dataProvider={this.state.formData}
+            >
               <InputData label="Nome" dataField="name" />
 
               <InputData
@@ -40,11 +64,7 @@ export default class NewUserScreen extends Component {
                 // itemRenderer={value => 'R$' + value}
               />
 
-              <InputData
-                label="Senha"
-                dataField="password"
-                isPassword={true}
-              />
+              <InputData label="Senha" dataField="password" isPassword={true} />
 
               <DatePicker
                 label="Nascimento"
@@ -55,18 +75,12 @@ export default class NewUserScreen extends Component {
               <DualRadioField
                 label="Sexo"
                 dataField="gender"
-                firstOption={{label: "Mulher", value: "women"}}
-                secondOption={{label: "Homem", value: "men"}}
+                firstOption={{ label: "Mulher", value: "women" }}
+                secondOption={{ label: "Homem", value: "men" }}
               />
             </Form>
 
-            <View style={{ marginTop: "10%" }}>
-              <FullButton
-                label={"Create account"}
-                isPrimary={true}
-                color={"#2980b9"}
-                onPress={this.createAccount}
-              />
+            <View style={{ marginTop: "10%" }}>              
               <FullButton
                 label={"Cancel"}
                 isPrimary={false}
@@ -77,7 +91,11 @@ export default class NewUserScreen extends Component {
                 label="Teste"
                 isPrimary={false}
                 color={"#2980b9"}
-                onPress={() => this.setState({formData: {name: 'valente', mail: 'asdadf'}})}
+                onPress={() =>
+                  this.setState({
+                    formData: { name: "valente", mail: "asdadf" }
+                  })
+                }
               />
             </View>
           </Content>
