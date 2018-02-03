@@ -6,6 +6,7 @@ import MainTabNavigator from "./MainTabNavigator";
 import registerForPushNotificationsAsync from "../api/registerForPushNotificationsAsync";
 import LoginScreen from "../screens/login/LoginScreen";
 import NewUserScreen from "../screens/login/NewUserScreen";
+import ConfirmationScreen from "../screens/login/ConfirmationScreen";
 
 const RootStackNavigator = StackNavigator(
   {
@@ -15,6 +16,10 @@ const RootStackNavigator = StackNavigator(
 
     NewUser: {
       screen: NewUserScreen
+    },
+
+    Confirmation: {
+      screen: ConfirmationScreen
     },
 
     Main: {

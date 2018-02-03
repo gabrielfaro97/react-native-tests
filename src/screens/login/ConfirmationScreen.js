@@ -1,16 +1,17 @@
 import React, { Component } from "react";
 import { KeyboardAvoidingView } from "react-native";
-import { Container, Content, Text, View, Button, Icon } from "native-base";
+import { Container, Content, Text, View, Button, Icon, L } from "native-base";
 import {
   InputData,
   DatePicker,
   DualRadioField,
   FullButton,
-  Form
+  Form,
+  Switch
 } from "@faiconForm";
 import { LinearGradient } from "expo";
 
-export default class NewUserScreen extends Component {
+export default class ConfirmationScreen extends Component {
   state = {
     formData: { name: null, mail: null }
   };
@@ -39,35 +40,22 @@ export default class NewUserScreen extends Component {
           </Button>
           <Content
             contentContainerStyle={{
-              marginLeft: "16%", //GAMBIARRA SAFADA PRA "ALINHAR" O TEXTO DO CENTRO <---------------------------------------
+              marginRight: "16%", //GAMBIARRA SAFADA PRA "ALINHAR" O TEXTO DO CENTRO <---------------------------------------
               alignItems: "center"
             }}
           >
             <Text style={{ color: "white", marginBottom: "5%" }}>CADASTRO</Text>
             <Text style={{ color: "white" }}>
-               {navigation.state.params.step}
+              {navigation.state.params.step}
             </Text>
-            <Text style={{ color: "white" }}>             
+            <Text style={{ color: "white" }}>
               {navigation.state.params.stepPosition} de 2
             </Text>
           </Content>
-          <Button transparent light onPress={() => {
-            navigation.navigate("Confirmation", {step: ' Confirmação ', stepPosition:'2'})
-          }}>  
-          <Text>Próximo</Text>
-        </Button>
         </View>
       </LinearGradient>
     )
   });
-
-  _handlePress = () => {
-    this.props.navigation.navigate("Login");
-  };
-
-  createAccount = () => {
-    console.log(this.form.dataProvider);
-  };
 
   render() {
     return (
@@ -78,30 +66,8 @@ export default class NewUserScreen extends Component {
               ref={me => (this.form = me)}
               dataProvider={this.state.formData}
             >
-              <InputData label="Nome" dataField="name" />
-
-              <InputData
-                label="Email"
-                dataField="mail"
-                keyboardType="email-address"
-                autoCapitalize="none"
-                // itemRenderer={value => 'R$' + value}
-              />
-
-              <InputData label="Senha" dataField="password" isPassword={true} />
-
-              <DatePicker
-                label="Nascimento"
-                dataField="birthDate"
-                style={{ marginTop: 20 }}
-              />
-
-              <DualRadioField
-                label="Sexo"
-                dataField="gender"
-                firstOption={{ label: "Mulher", value: "women" }}
-                secondOption={{ label: "Homem", value: "men" }}
-              />
+                <Switch dataField={"isValente"} title={'Sou um valente'} discription={'Sou um vagabundo e não faço nada da vida'}/>
+                <Switch dataField={"acceptedTerms"} discription={'Lí e aceito o regulamento de uso do aplicativo (estou mentindo)'}/>
             </Form>
           </Content>
           <Button
@@ -109,13 +75,9 @@ export default class NewUserScreen extends Component {
             full
             primary
             transparent
-            onPress={() =>
-              this.setState({
-                formData: { name: "valente", mail: "asdadf" }
-              })
-            }
+            onPress={() => alert('Cadastro finalizado com sucesso!')}
           >
-            <Text style={{fontSize:17}}>PRÓXIMO</Text>
+            <Text style={{fontSize:17}}>CONFIRMAR</Text>
           </Button>
         </KeyboardAvoidingView>
       </Container>

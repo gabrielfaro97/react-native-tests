@@ -27,7 +27,7 @@ export default class Login extends React.Component {
   };
 
   _handleNewUser = () => {
-    this.props.navigation.navigate("NewUser");
+    this.props.navigation.navigate("NewUser", {step: 'Perfil ', stepPosition:'1'});
   }
 
   
