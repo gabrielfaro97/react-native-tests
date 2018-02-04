@@ -8,7 +8,7 @@ import {
   FullButton,
   Form,
   Switch
-} from "@faiconForm";
+} from "@faicon/native-form";
 import { LinearGradient } from "expo";
 
 export default class ConfirmationScreen extends Component {
@@ -66,8 +66,8 @@ export default class ConfirmationScreen extends Component {
               ref={me => (this.form = me)}
               dataProvider={this.state.formData}
             >
-                <Switch dataField={"isValente"} title={'Sou um valente'} discription={'Sou um vagabundo e não faço nada da vida'}/>
-                <Switch dataField={"acceptedTerms"} discription={'Lí e aceito o regulamento de uso do aplicativo (estou mentindo)'}/>
+                <Switch dataField="isValente" title={'Sou um valente'} description={'Sou um vagabundo e não faço nada da vida'}/>
+                <Switch dataField="acceptedTerms" description={'Lí e aceito o regulamento de uso do aplicativo (estou mentindo)'}/>
             </Form>
           </Content>
           <Button

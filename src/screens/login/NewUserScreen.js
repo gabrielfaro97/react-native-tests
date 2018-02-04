@@ -7,7 +7,7 @@ import {
   DualRadioField,
   FullButton,
   Form
-} from "@faiconForm";
+} from "@faicon/native-form";
 import { LinearGradient } from "expo";
 
 export default class NewUserScreen extends Component {

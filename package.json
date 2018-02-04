@@ -8,15 +8,16 @@
     "preset": "jest-expo"
   },
   "dependencies": {
+    "expo": "^25.0.0",
+    "react": "16.2.0",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-25.0.0.tar.gz",
+    "native-base": "^2.3.8",
     "@expo/samples": "2.1.1",
-    "expo": "^24.0.0",
-    "native-base": "^2.3.7",
-    "react": "16.0.0",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-24.0.0.tar.gz",    
+    "@faicon/native-form": ">=0.0.1",
     "react-native-modal-datetime-picker": "^4.13.0",
-    "react-navigation": "^1.0.0-beta.21"
+    "react-navigation": "^1.0.0-beta.29"
   },
   "devDependencies": {
-    "jest-expo": "^24.0.0"
+    "jest-expo": "^25.0.0"
   }
 }
