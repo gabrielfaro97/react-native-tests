@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { KeyboardAvoidingView } from "react-native";
+import { KeyboardAvoidingView, Platform } from "react-native";
 import { Container, Content, Text, View, Button, Icon, L } from "native-base";
 import {
   InputData,
@@ -8,7 +8,7 @@ import {
   FullButton,
   Form,
   Switch
-} from "@faicon/native-form";
+} from "@faiconForm";
 import { LinearGradient } from "expo";
 
 export default class ConfirmationScreen extends Component {
@@ -25,10 +25,10 @@ export default class ConfirmationScreen extends Component {
         style={{
           height: "15%",
           alignItems: "center",
-          justifyContent: "center"
+          justifyContent: "center"          
         }}
       >
-        <View style={{ flexDirection: "row", justifyContent: "center" }}>
+        <View style={{ marginTop: (Platform.OS === 'ios') ? 30 : 0, flexDirection: "row", justifyContent: "center" }}>
           <Button
             transparent
             light
@@ -66,12 +66,12 @@ export default class ConfirmationScreen extends Component {
               ref={me => (this.form = me)}
               dataProvider={this.state.formData}
             >
-                <Switch dataField="isValente" title={'Sou um valente'} description={'Sou um vagabundo e não faço nada da vida'}/>
-                <Switch dataField="acceptedTerms" description={'Lí e aceito o regulamento de uso do aplicativo (estou mentindo)'}/>
+                <Switch dataField={"isValente"} title={'Sou um valente'} description={'Sou um vagabundo e não faço nada da vida'}/>
+                <Switch dataField={"acceptedTerms"} description={'Lí e aceito o regulamento de uso do aplicativo (estou mentindo)'}/>
             </Form>
           </Content>
           <Button
-            style={{borderWidth: 0.5, borderColor:'#259285'}}
+            style={{borderTopWidth: 0.5, borderTopColor:'#259285', marginBottom: (Platform.OS === 'ios') ? 10 : 0}}
             full
             primary
             transparent

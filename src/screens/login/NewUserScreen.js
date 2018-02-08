@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { KeyboardAvoidingView } from "react-native";
+import { KeyboardAvoidingView, Platform } from "react-native";
 import { Container, Content, Text, View, Button, Icon } from "native-base";
 import {
   InputData,
@@ -7,7 +7,7 @@ import {
   DualRadioField,
   FullButton,
   Form
-} from "@faicon/native-form";
+} from "@faiconForm";
 import { LinearGradient } from "expo";
 
 export default class NewUserScreen extends Component {
@@ -27,7 +27,7 @@ export default class NewUserScreen extends Component {
           justifyContent: "center"
         }}
       >
-        <View style={{ flexDirection: "row", justifyContent: "center" }}>
+        <View style={{ marginTop: (Platform.OS === 'ios') ? 30 : 0, flexDirection: "row", justifyContent: "center" }}>
           <Button
             transparent
             light
@@ -105,7 +105,7 @@ export default class NewUserScreen extends Component {
             </Form>
           </Content>
           <Button
-            style={{borderWidth: 0.5, borderColor:'#259285'}}
+            style={{borderTopWidth: 0.5, borderTopColor:'#259285', marginBottom: (Platform.OS === 'ios') ? 10 : 0}}
             full
             primary
             transparent
