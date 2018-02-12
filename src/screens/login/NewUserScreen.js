@@ -9,10 +9,12 @@ import {
   Form
 } from "@faiconForm";
 import { LinearGradient } from "expo";
+import User from "../../models/User";
 
 export default class NewUserScreen extends Component {
   state = {
-    formData: { name: null, mail: null }
+    formData: { name: null, mail: null },
+    user: null
   };
 
   static navigationOptions = ({ navigation }) => ({
@@ -27,7 +29,13 @@ export default class NewUserScreen extends Component {
           justifyContent: "center"
         }}
       >
-        <View style={{ marginTop: (Platform.OS === 'ios') ? 30 : 0, flexDirection: "row", justifyContent: "center" }}>
+        <View
+          style={{
+            marginTop: Platform.OS === "ios" ? 30 : 0,
+            flexDirection: "row",
+            justifyContent: "center"
+          }}
+        >
           <Button
             transparent
             light
@@ -45,17 +53,24 @@ export default class NewUserScreen extends Component {
           >
             <Text style={{ color: "white", marginBottom: "5%" }}>CADASTRO</Text>
             <Text style={{ color: "white" }}>
-               {navigation.state.params.step}
+              {navigation.state.params.step}
             </Text>
-            <Text style={{ color: "white" }}>             
+            <Text style={{ color: "white" }}>
               {navigation.state.params.stepPosition} de 2
             </Text>
           </Content>
-          <Button transparent light onPress={() => {
-            navigation.navigate("Confirmation", {step: ' Confirmação ', stepPosition:'2'})
-          }}>  
-          <Text>Próximo</Text>
-        </Button>
+          <Button
+            transparent
+            light
+            onPress={() => {
+              navigation.navigate("Confirmation", {
+                step: " Confirmação ",
+                stepPosition: "2"
+              });
+            }}
+          >
+            <Text>Próximo</Text>
+          </Button>
         </View>
       </LinearGradient>
     )
@@ -67,6 +82,14 @@ export default class NewUserScreen extends Component {
 
   createAccount = () => {
     console.log(this.form.dataProvider);
+  };
+
+  data = result => {
+    this.setState({ user: result });
+  };
+
+  componentWillMount = () => {
+    User.getUsers(this.data);
   };
 
   render() {
@@ -105,17 +128,25 @@ export default class NewUserScreen extends Component {
             </Form>
           </Content>
           <Button
-            style={{borderTopWidth: 0.5, borderTopColor:'#259285', marginBottom: (Platform.OS === 'ios') ? 10 : 0}}
+            style={{
+              borderTopWidth: 0.5,
+              borderTopColor: "#259285",
+              marginBottom: Platform.OS === "ios" ? 10 : 0
+            }}
             full
             primary
             transparent
             onPress={() =>
               this.setState({
-                formData: { name: "valente", mail: "asdadf" }
+                formData: {
+                  name: this.state.user[0].username,
+                  mail: this.state.user[0].email
+                }
               })
             }
+            //onPress={() => console.log(this.state.user[0].username, this.state.user[0].email)}
           >
-            <Text style={{fontSize:17}}>PRÓXIMO</Text>
+            <Text style={{ fontSize: 17 }}>Carregar Usuário</Text>
           </Button>
         </KeyboardAvoidingView>
       </Container>

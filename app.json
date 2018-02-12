@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "Gaming App",
+    "name": "Native Tests",
     "description": "This project is really great.",
-    "slug": "gaming-app",
+    "slug": "native-tests",
     "privacy": "public",
     "sdkVersion": "25.0.0",
     "platforms": ["ios", "android"],
@@ -18,7 +18,7 @@
       "supportsTablet": true
     },
     "android": {
-      "package": "com.faroscompany.gamingapp"
+      "package": "com.faroscompany.nativetests"
     }
   }
 }

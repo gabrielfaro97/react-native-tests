@@ -1,17 +1,10 @@
-import axios from "axios";
+import request from "superagent";
+const base = "http://mdi.herokuapp.com/";
 
-const base = 'http://mdi.herokuapp.com/';
-
-class API {  
-  get = (endpoint) => {
-    axios.get(base + endpoint)
-        .then(function (response) {
-        console.log(response);
-  })
-    .catch(function (error) {
-        console.log(error);
-  });
-  }
+class API {
+  get = endpoint => {
+    return request.get(base + endpoint).retry();
+  };
 }
 
 export default new API();

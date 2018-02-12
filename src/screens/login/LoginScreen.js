@@ -39,10 +39,10 @@ export default class Login extends React.Component {
         <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
           <View style={styles.logoContainer}>
             <Image
-              source={require("../../assets/images/logo.png")}
+              source={require("../../assets/images/icon.png")}
               style={styles.logo}
             />
-            <Text style={styles.titleText}>Welcome back, soldier! </Text>
+            <Text style={styles.titleText}>Testing is cool! </Text>
           </View>
         </TouchableWithoutFeedback>
 
@@ -103,8 +103,8 @@ const styles = StyleSheet.create({
   },
 
   logo: {
-    height: 200,
-    width: 300
+    height: 250,
+    width: 250
   },
 
   logoContainer: {
