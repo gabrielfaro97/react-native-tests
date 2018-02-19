@@ -9,11 +9,11 @@ export default {
     API.get("api/users").end((err, res) => {
       if (!!err) {
         if (!res) {
-          console.dir(res);
-          console.dir(err);
+          console.log(res);
+          console.log(err);
           console.log("Servidor inacessível");
         } else {
-          console.dir(err);
+          console.log(err);
         }
       } else {
         callback(res.body);
@@ -57,11 +57,11 @@ export default {
       .end((err, res) => {
         if (!!err) {
           if (!res) {
-            console.dir(res);
-            console.dir(err);
+            console.log(res);
+            console.log(err);
             console.log("Servidor inacessível");
           } else {
-            console.dir(err);
+            console.log(err);
           }
         } else {
           callback(res.body);

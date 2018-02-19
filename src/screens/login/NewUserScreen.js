@@ -14,7 +14,7 @@ import User from "../../models/User";
 export default class NewUserScreen extends Component {
   state = {
     formData: { name: null, mail: null },
-    user: null
+    user: {}
   };
 
   static navigationOptions = ({ navigation }) => ({
@@ -127,6 +127,7 @@ export default class NewUserScreen extends Component {
               />
             </Form>
           </Content>
+
           <Button
             style={{
               borderTopWidth: 0.5,
@@ -136,15 +137,48 @@ export default class NewUserScreen extends Component {
             full
             primary
             transparent
+            onPress={() => User.saveUser(
+              0,
+              'realm',
+              this.state.formData.name,
+              this.state.formData.mail,
+              false, 
+              0,
+              this.state.formData.birthDate,
+              this.state.formData.birthDate              
+            )}
+          >
+            <Text style={{ fontSize: 17 }}>Salvar Usuário</Text>
+          </Button>
+
+          {/*
+              merchantId,
+              realm,
+              username,
+              email,
+              emailVerified,
+              id,
+              createdAt,
+              updatedAt
+          */}      
+          
+          <Button
+            style={{
+              borderTopWidth: 0.5,
+              borderTopColor: "#259285",
+              marginBottom: Platform.OS === "ios" ? 20 : 0
+            }}
+            full
+            primary
+            transparent
             onPress={() =>
               this.setState({
                 formData: {
                   name: this.state.user[0].username,
-                  mail: this.state.user[0].email
+                  mail: this.state.user[0].email,                  
                 }
               })
-            }
-            //onPress={() => console.log(this.state.user[0].username, this.state.user[0].email)}
+            }            
           >
             <Text style={{ fontSize: 17 }}>Carregar Usuário</Text>
           </Button>
